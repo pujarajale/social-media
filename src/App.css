@@ -9,3 +9,28 @@
 .sidebar {
   min-height: 700px;
 }
+
+.post-card {
+  margin: 20px 40px;
+  width: 30rem;
+}
+
+.post-tags {
+  margin: 0 5px;
+}
+.reactions {
+  margin: 15px 0 0 0;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background-color: #dc3545;
+  color: white;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  cursor: pointer;
+}

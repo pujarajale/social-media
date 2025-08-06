@@ -1,34 +1,29 @@
-import { useContext } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { PostList } from "./store/post-list-store";
 
-const Post = ({ post }) => {
-  const { deletePost } = useContext(PostList);
+const Post = ({ post, onDelete }) => {
   return (
-    <>
-      <div className="card post-card">
-        <div className="card-body">
-          <h5 className="card-title">{post?.title}</h5>
-          <span
-            className="delete-icon"
-            onClick={() => {
-              deletePost(post?.id);
-            }}
-          >
-            <AiFillDelete />
+    <div className="card post-card">
+      <div className="card-body">
+        <h5 className="card-title">{post?.title}</h5>
+
+        <span className="delete-icon" onClick={() => onDelete(post.id)}>
+          <AiFillDelete />
+        </span>
+
+        <p className="card-text">{post?.body}</p>
+
+        {post?.tags?.map((tag) => (
+          <span key={tag} className="badge text-bg-primary post-tags">
+            {tag}
           </span>
-          <p className="card-text">{post?.body}</p>
-          {post?.tags?.map((tag) => (
-            <span key={tag} className="badge text-bg-primary post-tags">
-              {tag}
-            </span>
-          ))}
-          <div className="alert alert-success reactions" role="alert">
-            This post has been reacted by {post?.reactions} people.
-          </div>
+        ))}
+
+        <div className="alert alert-success reactions" role="alert">
+          This post has been reacted by {post?.reactions} people.
         </div>
       </div>
-    </>
+    </div>
   );
 };
+
 export default Post;

@@ -9,13 +9,10 @@ export const PostList = createContext({
 const postListReducer = (currentPostList, action) => {
   let newPostList = currentPostList;
   if (action.type === "DELETE_POST") {
-    console.log(action.payload.postId);
     newPostList = currentPostList.filter((post) => {
-      console.log(currentPostList);
       return post.id !== action.payload.postId;
     });
   }
-  console.log(newPostList);
   return newPostList;
 };
 

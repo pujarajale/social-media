@@ -9,7 +9,8 @@ const PostList = () => {
 
   const handleDelete = (id) => {
     deletePost(id);
-    setTimeout(() => setAlertMsg("Post Deleted"), 3000);
+    setAlertMsg("Post Deleted Sucessfuly!!!");
+    setTimeout(() => setAlertMsg(""), 1000); // hide after 1000 seconds
   };
 
   return (

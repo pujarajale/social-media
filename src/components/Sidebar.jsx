@@ -64,45 +64,6 @@ const Sidebar = ({ selectedTab, setSelectedTab }) => {
               Create Post
             </a>
           </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#table"></use>
-              </svg>
-              Feeds
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#grid"></use>
-              </svg>
-              Groups
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              <svg
-                className="bi pe-none me-2"
-                width="16"
-                height="16"
-                aria-hidden="true"
-              >
-                <use xlinkHref="#people-circle"></use>
-              </svg>
-              Events
-            </a>
-          </li>
         </ul>
         <hr />
         <div className="dropdown">

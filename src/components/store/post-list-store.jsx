@@ -3,6 +3,7 @@ import { createContext, useReducer } from "react";
 export const PostList = createContext({
   postList: [],
   addPost: () => {},
+  addInitialPosts: () => {},
   deletePost: () => {},
 });
 
@@ -12,6 +13,8 @@ const postListReducer = (currentPostList, action) => {
     newPostList = currentPostList.filter((post) => {
       return post.id !== action.payload.postId;
     });
+  } else if (action.type === "ADD_INITIAL_POST") {
+    newPostList = action.payload.posts;
   } else if (action.type === "ADD_POST") {
     newPostList = [action.payload, ...currentPostList];
   }
@@ -19,10 +22,7 @@ const postListReducer = (currentPostList, action) => {
 };
 
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
   const addPost = (userId, postTitle, postBody, reactions, tags) => {
     dispatchPostList({
       type: "ADD_POST",
@@ -36,7 +36,14 @@ const PostListProvider = ({ children }) => {
       },
     });
   };
-  console.log(postList);
+  const addInitialPosts = (posts) => {
+    dispatchPostList({
+      type: "ADD_INITIAL_POST",
+      payload: {
+        posts,
+      },
+    });
+  };
 
   const deletePost = (postId) => {
     dispatchPostList({
@@ -50,7 +57,7 @@ const PostListProvider = ({ children }) => {
   return (
     <>
       <PostList.Provider
-        value={{ postList: postList, addPost: addPost, deletePost: deletePost }}
+        value={{ postList, addPost, addInitialPosts, deletePost }}
       >
         {children}
       </PostList.Provider>
@@ -59,22 +66,3 @@ const PostListProvider = ({ children }) => {
 };
 
 export default PostListProvider;
-
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Going to mumbai",
-    body: "Hii, friends , im going to mumbai.",
-    reactions: 4,
-    userId: "user-g",
-    tags: ["vacation", "mumbai", "enjoying"],
-  },
-  {
-    id: "2",
-    title: "B.E. Graduated ",
-    body: "Hii, friends , I got graduated degree. im so happy bcoz completed degree.",
-    reactions: 2,
-    userId: "user-b",
-    tags: ["graduation", "pass"],
-  },
-];

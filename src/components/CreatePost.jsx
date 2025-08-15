@@ -16,7 +16,10 @@ const CreatePost = () => {
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
     const postBody = postBodyElement.current.value;
-    const reactions = reactionsElement.current.value;
+    const reactions = {
+      likes: reactionsElement.current.value,
+      dislikes: 0,
+    };
     const tags = tagsElement.current.value.split(" ");
     setAlertMsg("Post Created Sucessfuly!!!");
     //after add post form will be clear...

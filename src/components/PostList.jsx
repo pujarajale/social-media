@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PostList as PostListData } from "./store/post-list-store";
 import Post from "./Post";
 import Alert from "./Alert";
@@ -14,11 +14,11 @@ const PostList = () => {
     setTimeout(() => setAlertMsg(""), 1000); // hide after 1000 seconds
   };
 
-  const handleGetPostClick = () => {
+  useEffect(() => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((res) => addInitialPosts(res.posts));
-  };
+  }, []);
 
   return (
     <>
@@ -29,9 +29,7 @@ const PostList = () => {
           onClose={() => setAlertMsg("")}
         />
       )}
-      {postList.length === 0 && (
-        <WelcomeMsg onGetPostClick={handleGetPostClick} />
-      )}
+      {postList.length === 0 && <WelcomeMsg />}
       {postList.map((post) => (
         <Post key={post.id} post={post} onDelete={handleDelete} />
       ))}
